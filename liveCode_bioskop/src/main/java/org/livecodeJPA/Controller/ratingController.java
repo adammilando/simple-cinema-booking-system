@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class ratingController {
+public class ratingController implements IController{
     Scanner scanner = new Scanner(System.in);
     private ratingService ratingService;
 
@@ -16,24 +16,26 @@ public class ratingController {
         this.ratingService = ratingService;
     }
 
-    public void createRating() {
-            System.out.print("Enter rating code (A, BO, R, or D): ");
-            String ratingCodeStr = scanner.nextLine();
-            ratingCode ratingCode = null;
-            ratingCode = ratingCode.valueOf(ratingCodeStr);
+    @Override
+    public void add() {
+        System.out.print("Enter rating code (A, BO, R, or D): ");
+        String ratingCodeStr = scanner.nextLine();
+        ratingCode ratingCode = null;
+        ratingCode = ratingCode.valueOf(ratingCodeStr);
 
-            System.out.print("Enter rating description: ");
-            String description = scanner.nextLine();
+        System.out.print("Enter rating description: ");
+        String description = scanner.nextLine();
 
-            Rating rating = new Rating();
-            rating.setRating(ratingCode);
-            rating.setDescription(description);
+        Rating rating = new Rating();
+        rating.setRating(ratingCode);
+        rating.setDescription(description);
 
-            ratingService.add(rating);
-            System.out.println("Rating added successfully with ID " + rating.getId());
-
+        ratingService.add(rating);
+        System.out.println("Rating added successfully with ID " + rating.getId());
     }
-    public void updateRating() {
+
+    @Override
+    public void update() {
         System.out.print("Enter rating ID: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -60,23 +62,8 @@ public class ratingController {
         System.out.println("Rating updated successfully!");
     }
 
-
-    public void deleteRating() {
-        System.out.print("Enter rating ID: ");
-        Long id = scanner.nextLong();
-        scanner.nextLine();
-
-        Rating rating = ratingService.getById(id);
-        if (rating == null) {
-            System.out.println("Rating not found!");
-            return;
-        }else {
-            ratingService.delete(id);
-            System.out.println("Rating deleted successfully!");
-        }
-    }
-
-    public void listRatings() {
+    @Override
+    public void findAll() {
         System.out.println("Masukkan page: ");
         Integer page = scanner.nextInt();
         System.out.println("masukkan pageSize: ");
@@ -93,7 +80,8 @@ public class ratingController {
         }
     }
 
-    public void getRatingById() {
+    @Override
+    public void getById() {
         System.out.print("Enter rating ID: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -107,6 +95,19 @@ public class ratingController {
         System.out.println(rating);
     }
 
+    @Override
+    public void delete() {
+        System.out.print("Enter rating ID: ");
+        Long id = scanner.nextLong();
+        scanner.nextLine();
 
-
+        Rating rating = ratingService.getById(id);
+        if (rating == null) {
+            System.out.println("Rating not found!");
+            return;
+        }else {
+            ratingService.delete(id);
+            System.out.println("Rating deleted successfully!");
+        }
+    }
 }

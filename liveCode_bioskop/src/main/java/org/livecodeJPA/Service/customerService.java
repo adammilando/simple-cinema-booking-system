@@ -52,9 +52,14 @@ public class customerService implements IService<Customer> {
         Seat seat = seatService.getById(seatId);
         Film film =seat.getTheater().getFilms();
         int age = getAge.age(customer.getBirthDate(), film.getShowDate());
-        if ( age < film.getRating().getRating().getAgeLimit()){
-            throw new IllegalArgumentException("Customer to young");
+        try {
+            if (age < film.getRating().getRating().getAgeLimit()){
+                throw new IllegalArgumentException("Customer to young");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
         customer.getSeats().add(seat);
         seat.getCustomers().add(customer);
         customerRepo.update(customer);

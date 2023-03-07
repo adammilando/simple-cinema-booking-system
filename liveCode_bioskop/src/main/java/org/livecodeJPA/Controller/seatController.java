@@ -9,7 +9,7 @@ import org.livecodeJPA.Service.*;
 import java.util.List;
 import java.util.Scanner;
 
-public class seatController {
+public class seatController implements IController{
     private seatService seatService;
     private theaterService theaterService;
 
@@ -19,7 +19,9 @@ public class seatController {
     }
 
     Scanner scanner = new Scanner(System.in);
-    public void createSeat() {
+
+    @Override
+    public void add() {
         System.out.print("Enter seat number: ");
         String nomor = scanner.nextLine();
 
@@ -40,7 +42,9 @@ public class seatController {
         seatService.add(seat);
         System.out.println("Seat created successfully!");
     }
-    public void updateSeat() {
+
+    @Override
+    public void update() {
         System.out.print("Enter seat ID: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -73,16 +77,8 @@ public class seatController {
         System.out.println("Seat updated successfully!");
     }
 
-    public void deleteSeat() {
-        System.out.print("Enter seat ID: ");
-        Long id = scanner.nextLong();
-        scanner.nextLine();
-
-        seatService.delete(id);
-        System.out.println("seat deleted successfully!");
-    }
-
-    public void listSeats() {
+    @Override
+    public void findAll() {
         System.out.println("Masukkan page: ");
         Integer page = scanner.nextInt();
         System.out.println("masukkan pageSize: ");
@@ -100,7 +96,8 @@ public class seatController {
         }
     }
 
-    public void findSeatById() {
+    @Override
+    public void getById() {
         System.out.print("Enter customer ID: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -115,4 +112,15 @@ public class seatController {
         System.out.printf("seat Number: %s\n", seat.getSeatNumber());
         System.out.printf("Theater: %s\n", seat.getTheater().getTheaterNumber());
     }
+
+    @Override
+    public void delete() {
+        System.out.print("Enter seat ID: ");
+        Long id = scanner.nextLong();
+        scanner.nextLine();
+
+        seatService.delete(id);
+        System.out.println("seat deleted successfully!");
+    }
+
 }

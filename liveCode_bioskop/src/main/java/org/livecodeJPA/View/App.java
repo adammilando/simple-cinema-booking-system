@@ -113,7 +113,7 @@ public class App {
                     break;
                 case 2:
                     System.out.println("Page dan pageSize untuk Daftar theater");
-                    theaterController.listTheaters();
+                    theaterController.findAll();
                     customerController.bookTicket();
                     break;
                 case 3:
@@ -184,7 +184,7 @@ public class App {
 
             switch (pilih){
                 case 1:
-                    ratingController.listRatings();
+                    ratingController.findAll();
                     filmController.add();
                     break;
                 case 2:
@@ -224,19 +224,19 @@ public class App {
             switch (pilih){
                 case 1:
                     filmController.findAll();
-                    theaterController.createTheater();
+                    theaterController.add();
                     break;
                 case 2:
-                    theaterController.updateTheater();
+                    theaterController.update();
                     break;
                 case 3:
-                    theaterController.listTheaters();
+                    theaterController.findAll();
                     break;
                 case 4:
-                    theaterController.findTheaterById();
+                    theaterController.getById();
                     break;
                 case 5:
-                    theaterController.deleteTheater();
+                    theaterController.delete();
                     break;
                 case 6:
                     return;
@@ -262,20 +262,20 @@ public class App {
 
             switch (pilih){
                 case 1:
-                    theaterController.listTheaters();
-                    seatController.createSeat();
+                    theaterController.findAll();
+                    seatController.add();
                     break;
                 case 2:
-                    seatController.updateSeat();
+                    seatController.update();
                     break;
                 case 3:
-                    seatController.listSeats();
+                    seatController.findAll();
                     break;
                 case 4:
-                    seatController.findSeatById();
+                    seatController.getById();
                     break;
                 case 5:
-                    seatController.deleteSeat();
+                    seatController.delete();
                     break;
                 case 6:
                     return;
@@ -301,19 +301,19 @@ public class App {
 
             switch (pilih){
                 case 1:
-                    ratingController.createRating();
+                    ratingController.add();
                     break;
                 case 2:
-                    ratingController.updateRating();
+                    ratingController.update();
                     break;
                 case 3:
-                    ratingController.listRatings();
+                    ratingController.findAll();
                     break;
                 case 4:
-                    ratingController.getRatingById();
+                    ratingController.getById();
                     break;
                 case 5:
-                    ratingController.deleteRating();
+                    ratingController.delete();
                     break;
                 case 6:
                     return;

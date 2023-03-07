@@ -7,7 +7,7 @@ import org.livecodeJPA.Model.Seat;
 import org.livecodeJPA.Model.Theater;
 import org.livecodeJPA.Service.*;
 
-public class theaterController {
+public class theaterController implements IController{
     private theaterService theaterService;
     private filmService filmService;
 
@@ -17,7 +17,9 @@ public class theaterController {
     }
 
     Scanner scanner = new Scanner(System.in);
-    public void createTheater() {
+
+    @Override
+    public void add() {
         System.out.print("Enter Theater number: ");
         String number = scanner.nextLine();
         System.out.print("Enter Film ID: ");
@@ -37,7 +39,9 @@ public class theaterController {
         theaterService.add(theater);
         System.out.println("Seat created successfully!");
     }
-    public void updateTheater() {
+
+    @Override
+    public void update() {
         System.out.print("Enter theater ID: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -70,16 +74,8 @@ public class theaterController {
         System.out.println("Seat updated successfully!");
     }
 
-    public void deleteTheater() {
-        System.out.print("Enter theater ID: ");
-        Long id = scanner.nextLong();
-        scanner.nextLine();
-
-        theaterService.delete(id);
-        System.out.println("seat deleted successfully!");
-    }
-
-    public void listTheaters() {
+    @Override
+    public void findAll() {
         System.out.println("Masukkan page: ");
         Integer page = scanner.nextInt();
         System.out.println("masukkan pageSize: ");
@@ -97,7 +93,8 @@ public class theaterController {
         }
     }
 
-    public void findTheaterById() {
+    @Override
+    public void getById() {
         System.out.print("Enter Theater ID: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -111,5 +108,15 @@ public class theaterController {
         System.out.printf("Theater ID: %d\n", theater.getId());
         System.out.printf("Theater Number: %s\n", theater.getTheaterNumber());
         System.out.printf("Film: %s\n", theater.getFilms());
+    }
+
+    @Override
+    public void delete() {
+        System.out.print("Enter theater ID: ");
+        Long id = scanner.nextLong();
+        scanner.nextLine();
+
+        theaterService.delete(id);
+        System.out.println("seat deleted successfully!");
     }
 }
