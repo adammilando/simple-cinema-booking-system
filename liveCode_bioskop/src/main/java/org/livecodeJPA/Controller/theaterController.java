@@ -37,7 +37,7 @@ public class theaterController implements IController{
         theater.setFilms(filmr);
 
         theaterService.add(theater);
-        System.out.println("Seat created successfully!");
+        System.out.println("Theater created successfully!");
     }
 
     @Override
@@ -71,7 +71,7 @@ public class theaterController implements IController{
         }
 
         theaterService.update(theater);
-        System.out.println("Seat updated successfully!");
+        System.out.println("Theater updated successfully!");
     }
 
     @Override
@@ -117,6 +117,6 @@ public class theaterController implements IController{
         scanner.nextLine();
 
         theaterService.delete(id);
-        System.out.println("seat deleted successfully!");
+        System.out.println("Theater deleted successfully!");
     }
 }

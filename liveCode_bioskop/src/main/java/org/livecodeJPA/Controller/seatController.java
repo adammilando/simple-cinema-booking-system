@@ -24,6 +24,7 @@ public class seatController implements IController{
     public void add() {
         System.out.print("Enter seat number: ");
         String nomor = scanner.nextLine();
+        scanner.nextLine();
 
         System.out.print("Enter theater ID: ");
         Long theaterId = scanner.nextLong();

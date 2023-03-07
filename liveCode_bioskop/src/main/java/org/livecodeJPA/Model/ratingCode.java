@@ -2,8 +2,8 @@ package org.livecodeJPA.Model;
 
 public enum ratingCode {
     A("UMUM", 0),
-    BO("Kurang dari 13 tahun tidak boleh", 13),
-    R("Kurang dari 18 tahun tidak boleh", 18),
+    BO("Kurang dari 13 tahun tidak boleh", 12),
+    R("Kurang dari 18 tahun tidak boleh", 17),
     D("Sama dengan atau lebih dari 21 tahun diperbolehkan",21);
 
     private final String description;

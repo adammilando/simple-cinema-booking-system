@@ -12,7 +12,7 @@ public class customerService implements IService<Customer> {
     private seatService seatService;
     private theaterService theaterService;
 
-    public customerService(org.livecodeJPA.Repository.customerRepo customerRepo, org.livecodeJPA.Service.seatService seatService, org.livecodeJPA.Service.theaterService theaterService) {
+    public customerService(customerRepo customerRepo, seatService seatService, theaterService theaterService) {
         this.customerRepo = customerRepo;
         this.seatService = seatService;
         this.theaterService = theaterService;
@@ -53,7 +53,7 @@ public class customerService implements IService<Customer> {
         Film film =seat.getTheater().getFilms();
         int age = getAge.age(customer.getBirthDate(), film.getShowDate());
         try {
-            if (age < film.getRating().getRating().getAgeLimit()){
+            if (age <= film.getRating().getRating().getAgeLimit()){
                 throw new IllegalArgumentException("Customer to young");
             }
         } catch (Exception e){

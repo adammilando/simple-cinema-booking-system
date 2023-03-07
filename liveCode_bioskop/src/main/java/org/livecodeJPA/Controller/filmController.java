@@ -27,9 +27,17 @@ public class filmController implements IController {
         System.out.print("Enter film duration: ");
         String duration = scanner.nextLine();
 
-        System.out.print("Enter film show date (yyyy-MM-dd): ");
-        String showDateStr = scanner.nextLine();
+        String showDateStr;
+        while (true){
+            System.out.print("Enter film show date (yyyy-MM-dd): ");
+            showDateStr = scanner.nextLine();
 
+            if (showDateStr.matches("\\d{4}-\\{2}\\{2}")){
+                break;
+            } else {
+                System.out.println("invalid input dengan Format (yyyy-MM-dd)");
+            }
+        }
         System.out.print("Enter film price: ");
         Integer price = scanner.nextInt();
         scanner.nextLine();

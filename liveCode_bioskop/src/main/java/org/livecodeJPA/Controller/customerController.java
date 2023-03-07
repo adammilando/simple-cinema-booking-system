@@ -18,27 +18,26 @@ public class customerController implements IController{
 
     @Override
     public void add() {
-        boolean isInValid = true;
-        while (isInValid){
-            try{
-                System.out.print("Enter customer name: ");
-                String name = scanner.nextLine();
+        System.out.print("Enter customer name: ");
+        String name = scanner.nextLine();
 
-                System.out.print("Enter customer birthdate (yyyy-MM-dd): ");
-                String birthdate = scanner.nextLine();
+        String birthdate;
+        while (true){
+            System.out.print("Enter customer birthdate (yyyy-MM-dd): ");
+            birthdate = scanner.nextLine();
 
-
-                Customer customer = new Customer();
-                customer.setName(name);
-                customer.setBirthDate(generateDate.generate(birthdate));
-
-                customerService.add(customer);
-                System.out.println("Customer created successfully!");
-                isInValid = false;
-            } catch (Exception e){
-                System.out.println("invalid input " + e.getMessage());
+            if (birthdate.matches("\\d{4}-\\{2}\\{2}")){
+                break;
+            } else {
+                System.out.println("invalid input dengan Format (yyyy-MM-dd)");
             }
         }
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setBirthDate(generateDate.generate(birthdate));
+
+        customerService.add(customer);
+        System.out.println("Customer created successfully!");
     }
 
     @Override

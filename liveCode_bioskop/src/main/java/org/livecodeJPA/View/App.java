@@ -12,16 +12,16 @@ public class App {
     Scanner scanner = new Scanner(System.in);
 
     static EntityManager entityManager = Factory.start();
-    static org.livecodeJPA.Repository.customerRepo customerRepo = new customerRepo(entityManager);
-    static org.livecodeJPA.Repository.seatRepo seatRepo = new seatRepo(entityManager);
-    static org.livecodeJPA.Repository.theaterRepo theaterRepo = new theaterRepo(entityManager);
-    static org.livecodeJPA.Repository.filmRepo filmRepo =new filmRepo(entityManager);
-    static org.livecodeJPA.Repository.ratingRepo ratingRepo = new ratingRepo(entityManager);
+    static customerRepo customerRepo = new customerRepo(entityManager);
+    static seatRepo seatRepo = new seatRepo(entityManager);
+    static theaterRepo theaterRepo = new theaterRepo(entityManager);
+    static filmRepo filmRepo =new filmRepo(entityManager);
+    static ratingRepo ratingRepo = new ratingRepo(entityManager);
 
-    static org.livecodeJPA.Service.ratingService ratingService = new ratingService(ratingRepo);
-    static org.livecodeJPA.Service.filmService filmService = new filmService(filmRepo,ratingService);
-    static org.livecodeJPA.Service.theaterService theaterService = new theaterService(theaterRepo,filmService);
-    static org.livecodeJPA.Service.seatService seatService = new seatService(seatRepo,theaterService,new customerService(customerRepo,new seatService(seatRepo,theaterService,null), theaterService));
+    static ratingService ratingService = new ratingService(ratingRepo);
+    static filmService filmService = new filmService(filmRepo,ratingService);
+    static theaterService theaterService = new theaterService(theaterRepo,filmService);
+    static seatService seatService = new seatService(seatRepo,theaterService,new customerService(customerRepo,new seatService(seatRepo,theaterService,null), theaterService));
     static customerService customerService = new customerService(customerRepo, seatService, theaterService);
 
     static org.livecodeJPA.Controller.customerController customerController = new customerController(customerService);
